@@ -1,5 +1,5 @@
-import React from 'react';
 import CardFilmScreen from '../card-film-screen/card-film-screen';
+import Logo from '../logo/logo';
 
 type MainScreenProps = {
   title: string;
@@ -10,7 +10,7 @@ type MainScreenProps = {
 
 function MainScreen({ title, genre, releaseDate, cardsCount }: MainScreenProps): JSX.Element {
   return (
-    <React.Fragment>
+    <>
       <section className="film-card">
         <div className="film-card__bg">
           <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
@@ -20,11 +20,7 @@ function MainScreen({ title, genre, releaseDate, cardsCount }: MainScreenProps):
 
         <header className="page-header film-card__head">
           <div className="logo">
-            <a href="/" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            <Logo/>
           </div>
 
           <ul className="user-block">
@@ -131,7 +127,7 @@ function MainScreen({ title, genre, releaseDate, cardsCount }: MainScreenProps):
           </div>
         </footer>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 
