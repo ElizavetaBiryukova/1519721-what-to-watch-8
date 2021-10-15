@@ -8,36 +8,55 @@ import MyListScreen from '../my-list-screen/my-list-screen';
 import PlayerScreen from '../player-screen/player-screen';
 import SignInScreen from '../sign-in-screen/sign-in-screen';
 import PrivateRoute from '../private-route/private-route';
+import { Films, Film } from '../../types/films';
+import { Reviews } from '../../types/reviews';
 
 type AppScreenProps = {
   title: string;
   genre: string;
   releaseDate: number;
-  cardsCount: number;
+  films: Films;
+  reviews: Reviews;
 }
 
-function App({ title, genre, releaseDate, cardsCount }: AppScreenProps): JSX.Element {
+function App({ title, genre, releaseDate, films, reviews }: AppScreenProps): JSX.Element {
+  const [firstFilm] = films;
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main}>
-          <MainScreen title={title} genre={genre} releaseDate={releaseDate} cardsCount={cardsCount} />
+          <MainScreen title={title} genre={genre} releaseDate={releaseDate} films={films} />
         </Route>
-        <Route exact path={AppRoute.AddReview}>
-          <AddReviewScreen />
-        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.AddReview}
+          render={() => (
+            <AddReviewScreen
+              film={firstFilm as Film}
+            />)}
+          authorizationStatus={AuthorizationStatus.NoAuth}
+        >
+        </PrivateRoute>
         <Route exact path={AppRoute.Film}>
-          <FilmsScreen />
+          <FilmsScreen
+            film={firstFilm as Film}
+          />
         </Route>
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyListScreen />}
+          render={() => (
+            <MyListScreen
+              films={films}
+            />)}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Player}>
-          <PlayerScreen />
+          <PlayerScreen
+            film={firstFilm as Film}
+          />
         </Route>
         <Route exact path={AppRoute.SignIn}>
           <SignInScreen />
@@ -46,7 +65,7 @@ function App({ title, genre, releaseDate, cardsCount }: AppScreenProps): JSX.Ele
           <Error />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 
