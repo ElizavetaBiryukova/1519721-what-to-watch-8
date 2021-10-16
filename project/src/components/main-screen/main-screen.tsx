@@ -1,14 +1,17 @@
-import CardFilmScreen from '../card-film-screen/card-film-screen';
+import { Link } from 'react-router-dom';
 import Logo from '../logo/logo';
+import ListOfFilms from '../list-of-films/list-of-films';
+import { Films } from '../../types/films';
+import { AppRoute } from '../../const';
 
 type MainScreenProps = {
   title: string;
   genre: string;
   releaseDate: number;
-  cardsCount: number;
+  films: Films;
 }
 
-function MainScreen({ title, genre, releaseDate, cardsCount }: MainScreenProps): JSX.Element {
+function MainScreen({ title, genre, releaseDate, films }: MainScreenProps): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -20,13 +23,15 @@ function MainScreen({ title, genre, releaseDate, cardsCount }: MainScreenProps):
 
         <header className="page-header film-card__head">
           <div className="logo">
-            <Logo/>
+            <Logo />
           </div>
 
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                <Link to={AppRoute.MyList} >
+                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                </Link>
               </div>
             </li>
             <li className="user-block__item">
@@ -104,9 +109,7 @@ function MainScreen({ title, genre, releaseDate, cardsCount }: MainScreenProps):
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {new Array(cardsCount).fill(CardFilmScreen).map((filmCard, i) => filmCard(i))}
-          </div>
+          <ListOfFilms films={films} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
