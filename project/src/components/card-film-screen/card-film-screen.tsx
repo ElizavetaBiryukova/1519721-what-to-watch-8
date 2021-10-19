@@ -21,8 +21,8 @@ function CardFilmScreen(props: CardFilmScreenType): JSX.Element {
     setIsHovering(true);
   };
 
-  const timer = useRef<NodeJS.Timeout | null>(null);
-  const getTime = () => {
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearTime = () => {
     if (timer.current) {
       clearTimeout(timer.current);
       timer.current = null;
@@ -30,14 +30,14 @@ function CardFilmScreen(props: CardFilmScreenType): JSX.Element {
   };
 
   useEffect(() => {
-    getTime();
+    clearTime();
     if (!isHovering) {
       setIsPlaying(false);
     }
     if (isHovering) {
       timer.current = setTimeout(() => setIsPlaying(true), DELAY_TIME);
     }
-    return getTime;
+    return clearTime;
   }, [isHovering]);
 
   return (

@@ -1,23 +1,15 @@
-import {useRef, useEffect} from 'react';
+import { useRef } from 'react';
 
 type VideoPlayerProps = {
   previewVideoLink: string;
   previewImage: string;
 }
 
-function VideoPlayer({previewVideoLink, previewImage}: VideoPlayerProps): JSX.Element {
+function VideoPlayer({ previewVideoLink, previewImage }: VideoPlayerProps): JSX.Element {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  useEffect(() => {
-    if (videoRef.current !== null) {
-      videoRef.current.muted = true;
-      videoRef.current.autoplay = true;
-    }
-  });
-
-
   return (
-    <video src={previewVideoLink} className="player__video" poster={previewImage} ref={videoRef}></video>
+    <video autoPlay muted src={previewVideoLink} className="player__video" poster={previewImage} ref={videoRef}></video>
   );
 }
 
