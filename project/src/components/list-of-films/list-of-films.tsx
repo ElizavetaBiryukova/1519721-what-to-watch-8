@@ -14,10 +14,15 @@ function ListOfFilms({ films }: ListOfFilmProps): JSX.Element {
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
-      <CardFilmScreen
-        films={films}
-        onMouseEnter={toggleActiveCard}
-      />
+      <div className="catalog__films-list">
+        {films.map((film) =>
+          (
+            <CardFilmScreen
+              key={film.id}
+              film={film}
+              onMouseEnter={toggleActiveCard}
+            />))}
+      </div>
     </section>
 
   );

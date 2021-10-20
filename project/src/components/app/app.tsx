@@ -19,14 +19,14 @@ type AppScreenProps = {
   reviews: Reviews;
 }
 
-function App({ title, genre, releaseDate, films, reviews }: AppScreenProps): JSX.Element {
-  const [firstFilm] = films;
+function App(appScreenProps: AppScreenProps): JSX.Element {
+  const [firstFilm] = appScreenProps.films;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main}>
-          <MainScreen title={title} genre={genre} releaseDate={releaseDate} films={films} />
+          <MainScreen {...appScreenProps} />
         </Route>
         <PrivateRoute
           exact
@@ -48,7 +48,7 @@ function App({ title, genre, releaseDate, films, reviews }: AppScreenProps): JSX
           path={AppRoute.MyList}
           render={() => (
             <MyListScreen
-              films={films}
+              {...appScreenProps}
             />)}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
