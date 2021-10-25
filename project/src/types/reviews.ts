@@ -1,9 +1,14 @@
+type User = {
+  id: number;
+  name: string;
+}
+
 export type Review = {
   id: number;
-  rate: number;
-  text: string;
-  userName: string;
-  date: string;
+  user: User;
+  rating: number;
+  comment: string;
+  date: Date;
 };
 
 export type Reviews = Review[];

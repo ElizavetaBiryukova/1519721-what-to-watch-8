@@ -41,6 +41,7 @@ function App(appScreenProps: AppScreenProps): JSX.Element {
         <Route exact path={AppRoute.Film}>
           <FilmsScreen
             film={firstFilm as Film}
+            {...appScreenProps}
           />
         </Route>
         <PrivateRoute
