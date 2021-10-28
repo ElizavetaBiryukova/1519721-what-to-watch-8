@@ -1,4 +1,6 @@
 import {Films} from '../types/films';
+import {getRandomElement} from '../utils/common';
+import {genres} from '../mocks/genres';
 
 const films: Films = [
   {
@@ -16,7 +18,7 @@ const films: Films = [
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
     runTime: 99,
-    genre: 'Comedy',
+    genre: getRandomElement(genres),
     released: 2014,
     isFavorite: false,
   },
@@ -35,7 +37,7 @@ const films: Films = [
     director: 'Quentin Tarantino',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
     runTime: 234,
-    genre: 'Comedy',
+    genre: getRandomElement(genres),
     released: 2002,
     isFavorite: true,
   },
@@ -54,7 +56,7 @@ const films: Films = [
     director: 'Tim Burton',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
     runTime: 56,
-    genre: 'Comedy',
+    genre: getRandomElement(genres),
     released: 2013,
     isFavorite: false,
   },
@@ -73,7 +75,7 @@ const films: Films = [
     director: 'Guy Ritchie',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
     runTime: 34,
-    genre: 'Horror',
+    genre: getRandomElement(genres),
     released: 1993,
     isFavorite: false,
   },
@@ -92,7 +94,7 @@ const films: Films = [
     director: 'Edward Norton',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
     runTime: 73,
-    genre: 'Comedy',
+    genre: getRandomElement(genres),
     released: 1994,
     isFavorite: true,
   },
@@ -111,7 +113,7 @@ const films: Films = [
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
     runTime: 86,
-    genre: 'Drama',
+    genre: getRandomElement(genres),
     released: 2016,
     isFavorite: true,
   },
@@ -130,7 +132,7 @@ const films: Films = [
     director: 'James Cameron',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
     runTime: 89,
-    genre: 'Drama',
+    genre: getRandomElement(genres),
     released: 2010,
     isFavorite: true,
   },
@@ -149,7 +151,7 @@ const films: Films = [
     director: 'Christopher Nolan',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
     runTime: 69,
-    genre: 'Comedy',
+    genre: getRandomElement(genres),
     released: 2019,
     isFavorite: true,
   },
