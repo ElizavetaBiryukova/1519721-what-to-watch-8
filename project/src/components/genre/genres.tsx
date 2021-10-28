@@ -5,7 +5,7 @@ import {Actions} from '../../types/action';
 import {GenreList} from '../../types/genres';
 import {State} from '../../types/state';
 import {genres} from '../../mocks/genres';
-// filterProps
+
 const mapStateToProps = (state: State) => ({
   activeGenre: state.genre,
 });
