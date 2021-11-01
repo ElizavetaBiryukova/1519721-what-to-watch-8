@@ -107,10 +107,7 @@ function MainScreen({ title, genre, releaseDate, films }: ConnectedMainProps): J
           <ListOfFilms films={showFilms} />
 
           {showFilms.length === showFilmsCount ? <ShowMoreButton handleShowMoreClick={handleShowMoreClick} /> : ''}
-          {/* {
-            showFilmsCount <= showFilms.length &&
-            <ShowMoreButton handleShowMoreClick={handleShowMoreClick} />
-          } */}
+
         </section>
 
         <footer className="page-footer">
