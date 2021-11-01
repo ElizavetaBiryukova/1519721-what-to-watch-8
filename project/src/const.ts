@@ -1,4 +1,4 @@
-export enum AppRoute {
+enum AppRoute {
   Main = '/',
   SignIn = '/login',
   MyList = '/mylist',
@@ -7,10 +7,12 @@ export enum AppRoute {
   Player = '/player/:id'
 }
 
-export enum AuthorizationStatus {
+enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
 
-export const FILMS_COUNT = 8;
+const FILMS_COUNT = 8;
+
+export {AppRoute, AuthorizationStatus, FILMS_COUNT};

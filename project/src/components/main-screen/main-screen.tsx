@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect, ConnectedProps } from 'react-redux';
 import Logo from '../logo/logo';
 import ListOfFilms from '../list-of-films/list-of-films';
 import { Films } from '../../types/films';
 import { AppRoute, FILMS_COUNT } from '../../const';
-import { connect, ConnectedProps } from 'react-redux';
 import { State } from '../../types/state';
 import { filterFilms } from '../../store/filter/selectors';
 import Genres from '../genre/genres';
