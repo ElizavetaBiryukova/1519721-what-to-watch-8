@@ -1,7 +1,9 @@
 import {Films} from './films';
 import {GenreList} from './genres';
 
-export type State = {
+type State = {
   genre: GenreList,
   listFilms: Films,
 };
+
+export type {State};

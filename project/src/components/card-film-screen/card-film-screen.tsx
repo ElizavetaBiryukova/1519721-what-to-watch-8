@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 import { Film } from '../../types/films';
 import VideoPlayer from '../video-player/video-player';
-import { useEffect, useRef, useState } from 'react';
 
 const DELAY_TIME = 1000;
 

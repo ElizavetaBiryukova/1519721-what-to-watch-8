@@ -1,6 +1,6 @@
 import { Genre } from './genres';
 
-export type Film = {
+type Film = {
   id: number,
   name: string,
   posterImage: string,
@@ -20,4 +20,6 @@ export type Film = {
   isFavorite: boolean,
 }
 
-export type Films = Film[];
+type Films = Film[];
+
+export type {Film, Films};

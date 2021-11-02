@@ -1,12 +1,14 @@
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { connect, ConnectedProps } from 'react-redux';
 import Logo from '../logo/logo';
 import ListOfFilms from '../list-of-films/list-of-films';
-import {Films} from '../../types/films';
-import {AppRoute} from '../../const';
-import {connect, ConnectedProps} from 'react-redux';
-import {State} from '../../types/state';
-import {filterFilms} from '../../store/filter/selectors';
+import { Films } from '../../types/films';
+import { AppRoute, FILMS_COUNT } from '../../const';
+import { State } from '../../types/state';
+import { filterFilms } from '../../store/filter/selectors';
 import Genres from '../genre/genres';
+import ShowMoreButton from '../show-more-button/show-more-button';
 
 type MainScreenProps = {
   title: string;
@@ -25,6 +27,17 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedMainProps = PropsFromRedux & MainScreenProps;
 
 function MainScreen({ title, genre, releaseDate, films }: ConnectedMainProps): JSX.Element {
+  const [showFilmsCount, setShowFilmsCount] = useState(FILMS_COUNT);
+  const showFilms = films.slice(0, showFilmsCount);
+
+  const handleShowMoreClick = () => {
+    setShowFilmsCount((count) => FILMS_COUNT + count);
+  };
+
+  const resetShowFilmsCount = () => {
+    setShowFilmsCount(FILMS_COUNT);
+  };
+
   return (
     <>
       <section className="film-card">
@@ -89,13 +102,12 @@ function MainScreen({ title, genre, releaseDate, films }: ConnectedMainProps): J
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <Genres />
+          <Genres resetShowFilmsCount={resetShowFilmsCount} />
 
-          <ListOfFilms films={films} />
+          <ListOfFilms films={showFilms} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {showFilms.length === showFilmsCount ? <ShowMoreButton handleShowMoreClick={handleShowMoreClick} /> : ''}
+
         </section>
 
         <footer className="page-footer">
@@ -116,5 +128,5 @@ function MainScreen({ title, genre, releaseDate, films }: ConnectedMainProps): J
   );
 }
 
-export {MainScreen};
+export { MainScreen };
 export default connector(MainScreen);

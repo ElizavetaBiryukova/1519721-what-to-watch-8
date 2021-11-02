@@ -3,7 +3,7 @@ type User = {
   name: string;
 }
 
-export type Review = {
+type Review = {
   id: number;
   user: User;
   rating: number;
@@ -11,4 +11,6 @@ export type Review = {
   date: Date;
 };
 
-export type Reviews = Review[];
+type Reviews = Review[];
+
+export type {Review, Reviews};
