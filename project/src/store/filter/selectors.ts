@@ -3,7 +3,8 @@ import {GenreList} from '../../types/genres';
 import {State} from '../../types/state';
 
 const getGenre = (state: State) => state.genre;
-const getFilms = (state: State) => state.listFilms;
+
+const getFilms = (state: State) => state.films;
 
 const filterFilms = createSelector(
   [getFilms, getGenre],
@@ -12,7 +13,7 @@ const filterFilms = createSelector(
       return films;
     }
 
-    return films.filter((film) => film.genre.value === genre);
+    return films.filter((film) => film.genre === genre);
   },
 );
 

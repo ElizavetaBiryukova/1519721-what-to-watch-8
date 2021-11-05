@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import Logo from '../logo/logo';
-import { Film, Films } from '../../types/films';
-import { Reviews } from '../../types/reviews';
+import {Film, Films} from '../../types/films';
+import {Reviews} from '../../types/reviews';
 import Tabs from '../tabs/tabs';
 import ListOfFilms from '../list-of-films/list-of-films';
 
@@ -30,7 +30,7 @@ function FilmsScreen(props: FilmsScreenProps): JSX.Element {
 
           <header className="page-header film-card__head">
             <div className="logo">
-              <Logo/>
+              <Logo />
             </div>
 
             <ul className="user-block">
@@ -78,7 +78,7 @@ function FilmsScreen(props: FilmsScreenProps): JSX.Element {
               <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
             </div>
 
-            <Tabs film={film} reviews={reviews}/>
+            <Tabs film={film} reviews={reviews} />
 
           </div>
         </div>

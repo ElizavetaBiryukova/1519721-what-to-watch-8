@@ -9,6 +9,7 @@ import { State } from '../../types/state';
 import { filterFilms } from '../../store/filter/selectors';
 import Genres from '../genre/genres';
 import ShowMoreButton from '../show-more-button/show-more-button';
+import Spinner from '../spinner/spinner';
 
 type MainScreenProps = {
   title: string;
@@ -104,7 +105,7 @@ function MainScreen({ title, genre, releaseDate, films }: ConnectedMainProps): J
 
           <Genres resetShowFilmsCount={resetShowFilmsCount} />
 
-          <ListOfFilms films={showFilms} />
+          {showFilms.length > 0 ? <ListOfFilms films={showFilms} /> : <Spinner />}
 
           {showFilms.length === showFilmsCount ? <ShowMoreButton handleShowMoreClick={handleShowMoreClick} /> : ''}
 
