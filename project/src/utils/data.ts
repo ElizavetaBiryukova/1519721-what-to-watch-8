@@ -1,4 +1,4 @@
-export const getRatingText = (rating: number): string => {
+const getRatingText = (rating: number): string => {
   switch (true) {
     case (rating < 3):
       return 'Bad';
@@ -14,5 +14,7 @@ export const getRatingText = (rating: number): string => {
   return 'No rating';
 };
 
-export const formatRating = (rating: number): string =>
+const formatRating = (rating: number): string =>
   rating.toFixed(1).replace('.', ',');
+
+export {getRatingText, formatRating};

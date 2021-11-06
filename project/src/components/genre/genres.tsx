@@ -4,7 +4,6 @@ import {setGenres} from '../../store/action';
 import {Actions} from '../../types/action';
 import {GenreList} from '../../types/genres';
 import {State} from '../../types/state';
-import {genres} from '../../mocks/genres';
 
 const mapStateToProps = (state: State) => ({
   activeGenre: state.genre,
@@ -17,7 +16,6 @@ const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
-
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type GenreProps = PropsFromRedux & {
@@ -36,7 +34,7 @@ function Genres(props: GenreProps): JSX.Element {
 
   return (
     <ul className="catalog__genres-list">
-      {genres.map(({title, value}) => (
+      {Object.values(GenreList).map((value) => (
         <li
           key={value}
           className={`catalog__genres-item ${value === activeGenre ? 'catalog__genres-item--active' : ''} `}
@@ -47,7 +45,7 @@ function Genres(props: GenreProps): JSX.Element {
             id={`genre-${value}`}
             onClick={handleGenreClick(value)}
           >
-            {title}
+            {value}
           </a>
         </li>
       ))}

@@ -5,9 +5,9 @@ export enum GenreList {
   Documentary = 'Documentary',
   Dramas = 'Dramas',
   Horror = 'Horror',
-  KidsAndFamily = 'KidsAndFamily',
+  KidsAndFamily = 'Kids & Family',
   Romance = 'Romance',
-  SciFi = 'SciFi',
+  SciFi = 'Sci-Fi',
   Thrillers = 'Thrillers',
 }
 

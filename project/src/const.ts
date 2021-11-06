@@ -13,6 +13,12 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+enum APIRoute {
+  Films = '/films',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 const FILMS_COUNT = 8;
 
-export {AppRoute, AuthorizationStatus, FILMS_COUNT};
+export {AppRoute, AuthorizationStatus, APIRoute, FILMS_COUNT};
