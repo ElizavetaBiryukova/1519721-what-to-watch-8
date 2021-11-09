@@ -1,7 +1,11 @@
+import {useSelector} from 'react-redux';
+import {State} from '../../types/state';
 import Logo from '../logo/logo';
 import { Film } from '../../types/films';
 import ReviewForm from '../review-form/review-form';
-
+import { AuthorizationStatus } from '../../const';
+import UserBlockLogIn from '../user-block/user-block-log-in';
+import UserBlockLogOut from '../user-block/user-block-log-out';
 
 type AddReviewScreenProps = {
   film: Film;
@@ -9,7 +13,8 @@ type AddReviewScreenProps = {
 
 function AddReviewScreen(props: AddReviewScreenProps): JSX.Element {
   const { film } = props;
-  const { name, previewImage, posterImage } = film;
+  const { name, previewImage } = film;
+  const auth = useSelector((state: State) => state.authorizationStatus);
 
   return (
     <section className="film-card film-card--full">
@@ -36,16 +41,7 @@ function AddReviewScreen(props: AddReviewScreenProps): JSX.Element {
             </ul>
           </nav>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src={posterImage} alt="User avatar" width="63" height="63" />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a href="/" className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          {auth === AuthorizationStatus.Auth ? <UserBlockLogIn /> : <UserBlockLogOut />}
         </header>
 
         <div className="film-card__poster film-card__poster--small">

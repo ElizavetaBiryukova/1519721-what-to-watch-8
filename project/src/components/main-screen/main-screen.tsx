@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { connect, ConnectedProps } from 'react-redux';
 import Logo from '../logo/logo';
 import ListOfFilms from '../list-of-films/list-of-films';
 import { Films } from '../../types/films';
-import { AppRoute, FILMS_COUNT } from '../../const';
+import { FILMS_COUNT } from '../../const';
 import { State } from '../../types/state';
 import { filterFilms } from '../../store/filter/selectors';
 import Genres from '../genre/genres';
 import ShowMoreButton from '../show-more-button/show-more-button';
 import Spinner from '../spinner/spinner';
+import { AuthorizationStatus } from '../../const';
+import UserBlockLogIn from '../user-block/user-block-log-in';
+import UserBlockLogOut from '../user-block/user-block-log-out';
 
 type MainScreenProps = {
   title: string;
@@ -20,6 +22,7 @@ type MainScreenProps = {
 
 const mapStateToProps = (state: State) => ({
   films: filterFilms(state),
+  auth: state.authorizationStatus,
 });
 
 const connector = connect(mapStateToProps);
@@ -27,7 +30,7 @@ const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedMainProps = PropsFromRedux & MainScreenProps;
 
-function MainScreen({ title, genre, releaseDate, films }: ConnectedMainProps): JSX.Element {
+function MainScreen({ title, genre, releaseDate, films, auth }: ConnectedMainProps): JSX.Element {
   const [showFilmsCount, setShowFilmsCount] = useState(FILMS_COUNT);
   const showFilms = films.slice(0, showFilmsCount);
 
@@ -53,18 +56,7 @@ function MainScreen({ title, genre, releaseDate, films }: ConnectedMainProps): J
             <Logo />
           </div>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <Link to={AppRoute.MyList} >
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                </Link>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a href="/" className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          {auth === AuthorizationStatus.Auth ? <UserBlockLogIn /> : <UserBlockLogOut />}
         </header>
 
         <div className="film-card__wrap">
