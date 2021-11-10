@@ -1,9 +1,14 @@
 import {Link} from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import {State} from '../../types/state';
 import Logo from '../logo/logo';
 import {Film, Films} from '../../types/films';
 import {Reviews} from '../../types/reviews';
 import Tabs from '../tabs/tabs';
 import ListOfFilms from '../list-of-films/list-of-films';
+import {AuthorizationStatus} from '../../const';
+import UserBlockLogIn from '../user-block/user-block-log-in';
+import UserBlockLogOut from '../user-block/user-block-log-out';
 
 type FilmsScreenProps = {
   film: Film;
@@ -17,7 +22,7 @@ function FilmsScreen(props: FilmsScreenProps): JSX.Element {
   const showMoreLikeFilms = props.films
     .filter((item) => item.id !== film.id && item.genre === film.genre)
     .slice(0, 4);
-
+  const auth = useSelector((state: State) => state.authorizationStatus);
   return (
     <>
       <section className="film-card film-card--full">
@@ -33,16 +38,7 @@ function FilmsScreen(props: FilmsScreenProps): JSX.Element {
               <Logo />
             </div>
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a href="/" className="user-block__link">Sign out</a>
-              </li>
-            </ul>
+            {auth === AuthorizationStatus.Auth ? <UserBlockLogIn /> : <UserBlockLogOut />}
           </header>
 
           <div className="film-card__wrap">

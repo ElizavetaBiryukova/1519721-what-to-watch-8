@@ -1,5 +1,5 @@
 import { connect, ConnectedProps } from 'react-redux';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route,  Router as BrowserRouter } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import MainScreen from '../main-screen/main-screen';
 import AddReviewScreen from '../add-review-screen/add-review-screen';
@@ -11,6 +11,7 @@ import SignInScreen from '../sign-in-screen/sign-in-screen';
 import PrivateRoute from '../private-route/private-route';
 import { State } from '../../types/state';
 import Spinner from '../spinner/spinner';
+import browserHistory from '../../browser-history';
 
 type AppScreenProps = {
   title: string;
@@ -39,7 +40,7 @@ function App(props: PropsFromRedux): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path={AppRoute.Main}>
           <MainScreen {...props} />
@@ -51,7 +52,6 @@ function App(props: PropsFromRedux): JSX.Element {
             <AddReviewScreen
               film={films[0]}
             />)}
-          authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Film}>
@@ -68,7 +68,6 @@ function App(props: PropsFromRedux): JSX.Element {
             <MyListScreen
               {...props}
             />)}
-          authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Player}>

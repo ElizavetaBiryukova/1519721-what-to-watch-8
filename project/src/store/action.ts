@@ -1,16 +1,17 @@
-import {ActionType} from '../types/action';
-import {GenreList} from '../types/genres';
-import {AuthorizationStatus} from '../const';
-import {TypesFilmsFromServer} from '../types/films';
+import { ActionType } from '../types/action';
+import { GenreList } from '../types/genres';
+import { AuthorizationStatus, AppRoute } from '../const';
+import { TypesFilmsFromServer } from '../types/films';
+import { AuthInfo } from '../types/auth-info';
 
 const setGenres = (genre: GenreList) => ({
   type: ActionType.SetGenres,
-  payload: {genre},
+  payload: { genre },
 } as const);
 
 const loadFilms = (films: TypesFilmsFromServer[]) => ({
   type: ActionType.LoadFilms,
-  payload: {films},
+  payload: { films },
 } as const);
 
 const requireAuthorization = (authStatus: AuthorizationStatus) => ({
@@ -18,8 +19,18 @@ const requireAuthorization = (authStatus: AuthorizationStatus) => ({
   payload: authStatus,
 } as const);
 
+const requireAuthInfo = (authInfo: AuthInfo) => ({
+  type: ActionType.RequireAuthInfo,
+  payload: authInfo,
+} as const);
+
 const requireLogout = () => ({
   type: ActionType.RequireLogout,
 } as const);
 
-export {setGenres, loadFilms, requireAuthorization, requireLogout};
+const redirectToRoute = (url: AppRoute) => ({
+  type: ActionType.RedirectToRoute,
+  payload: url,
+} as const);
+
+export { setGenres, loadFilms, requireAuthorization, requireLogout, redirectToRoute, requireAuthInfo };

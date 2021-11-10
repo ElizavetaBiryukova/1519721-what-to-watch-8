@@ -1,12 +1,19 @@
+import {useSelector} from 'react-redux';
+import {State} from '../../types/state';
 import Logo from '../logo/logo';
 import { Films } from '../../types/films';
 import ListOfFilms from '../list-of-films/list-of-films';
+import { AuthorizationStatus } from '../../const';
+import UserBlockLogIn from '../user-block/user-block-log-in';
+import UserBlockLogOut from '../user-block/user-block-log-out';
+
 
 type MyListScreenType = {
   films: Films;
 }
 
 function MyListScreen({ films }: MyListScreenType): JSX.Element {
+  const auth = useSelector((state: State) => state.authorizationStatus);
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -16,16 +23,7 @@ function MyListScreen({ films }: MyListScreenType): JSX.Element {
 
         <h1 className="page-title user-page__title">My list</h1>
 
-        <ul className="user-block">
-          <li className="user-block__item">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </li>
-          <li className="user-block__item">
-            <a href="/" className="user-block__link">Sign out</a>
-          </li>
-        </ul>
+        {auth === AuthorizationStatus.Auth ? <UserBlockLogIn /> : <UserBlockLogOut />}
       </header>
 
       <ListOfFilms films={films} />
